@@ -1,15 +1,17 @@
 import {styled} from 'styled-components';
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
+import { sliderItems } from "../data";
+import { useState } from 'react';
 
 const Container = styled.div`
     width: 100%;
     height: 100vh;
     display: flex;
     position: relative;
+    overflow: hidden;  
+    `; // overflow hidden for getting the slide in the right side not in the bottom
 
-`;
-
-const Arrow = styled.div` 
+    const Arrow = styled.div`
     width: 50px;
     height: 50px;
     background-color: #fff7f7;
@@ -20,68 +22,96 @@ const Arrow = styled.div`
     position: absolute;
     top: 0;
     bottom: 0;
-    left: ${props => props.direction === "left" && "10px" }; 
-    right: ${props => props.direction === "right" && "10px" }; 
+    left: ${(props) => props.direction === "left" && "10px"};
+    right: ${(props) => props.direction === "right" && "10px"};
     margin: auto;
     cursor: pointer;
     opacity: 0.5;
+    z-index: 2;
+    `;
 
-`; // if direction left, left will be 10px 
-
-const Wrapper = styled.div`
+    const Wrapper = styled.div`
     height: 100%;
-`;
+    display: flex;
+    transition: all 1.5s ease;
+    transform: translateX(${(props) => props.slideIndex * -100}vw);
+    `;
 
-const Slide = styled.div`
+    const Slide = styled.div`
     width: 100vw;
     height: 100vh;
     display: flex;
-    align-items: center
-`;
+    align-items: center;
+    background-color: #${props => props.bg};
+    `;
 
-const ImgContainer = styled.div`
+    const ImgContainer = styled.div`
     height: 100%;
     flex: 1;
-`;
+    `;
 
-const Image = styled.img`
+    const Image = styled.img`
     height: 80%;
-`;
+    `;
 
-const InfoContainer = styled.div`
+    const InfoContainer = styled.div`
     flex: 1;
     padding: 50px;
-`;
+    `;
 
-const Title = styled.h1`
+    const Title = styled.h1`
+    font-size: 70px;
+    `;
+
+    const Desc = styled.p`
+    margin: 50px 0px;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    `;
+
+    const Button = styled.button`
+    padding: 10px;
+    font-size: 20px;
+    background-color: transparent;
+    cursor: pointer;
+    `;
+
     
-`;
-const Desc = styled.p`
-
-`;
-const Button = styled.button`
-
-`;
 
 const Slider = () => {
+
+    const [sliderIndex, setSliderIndex] = useState(0);
+
+    const handleClick = (direction) => {
+        if (direction === "left") {
+            setSliderIndex(sliderIndex > 0 ? sliderIndex - 1 : 2);
+        } else {
+            setSliderIndex(sliderIndex < 2 ? sliderIndex + 1 : 0);
+        }
+    }
+
     return (
         <Container>
-            <Arrow direction="left" >
+            <Arrow direction="left" onClick={() => handleClick("left")} >
                 <ArrowLeftOutlined />
             </Arrow>
-            <Wrapper>
-                <Slide>
-                    <ImgContainer>
-                        <Image src="https://img.freepik.com/free-photo/summer-portrait-cheerful-red-haired-lady-fashionable-outfit-having-fun-pink_273443-4440.jpg?w=360" />
-                    </ImgContainer>
-                    <InfoContainer>
-                        <Title>SUMMER SAL</Title>
-                        <Desc>Fashion Nova is the top online fashion store for women</Desc>
-                        <Button>SHOW NOW</Button>
-                    </InfoContainer>
-                </Slide>
+            <Wrapper slideIndex={sliderIndex} >
+                {sliderItems.map((item) => (
+                    <Slide bg={item.bg} key={item.id} >
+                        <ImgContainer>
+                            <Image src={item.img} style={{mixBlendMode: "multiply"}} /> {/*multiple for let the image get the same color with the background and this working just with white backgr..  */}
+                        </ImgContainer>
+                        <InfoContainer>
+                            <Title>{item.title}</Title>
+                            <Desc>{item.desc}</Desc>
+                            <Button>SHOW NOW</Button>
+                        </InfoContainer>
+                    </Slide>
+                ))}
             </Wrapper>
-            <Arrow direction="right" >
+            
+            <Arrow direction="right" onClick={() => handleClick("right")} >
                 <ArrowRightOutlined />
             </Arrow>
         </Container>
