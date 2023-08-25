@@ -47,15 +47,15 @@
         },
         {
         id:2,
-        img:"https://cdn.shopify.com/s/files/1/0101/4832/products/Angela_Natural_Tee.png?v=1606780388",
+        img:"https://badmintonclick.com.au/cdn/shop/products/10551_midnight_1024x.png?v=1680338353",
         },
         {
         id:3,
-        img:"https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
+        img:"https://photos6.spartoo.com/photos/242/24260973/24260973_350_A.jpg",
         },
         {
         id:4,
-        img:"https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
+        img:"https://images-na.ssl-images-amazon.com/images/I/8167dX0dLFL._AC_SR462,693_.jpg",
         },
         {
         id:5,
@@ -67,7 +67,7 @@
         },
         {
         id:7,
-        img:"https://www.vintageindustries.nl/download_front/qympzk1762/2217_Arrow_Jacket_Forest.png",
+        img:"https://contents.mediadecathlon.com/p2028679/k$e0bb687015fd8e13b335ed1df53e2770/doudoune-en-duvet-de-trek-montagne-confort-10c-trek-500-noir-homme.jpg?format=auto&quality=60&f=452x452",
         },
         {
         id:8,
