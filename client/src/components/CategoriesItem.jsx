@@ -37,8 +37,7 @@ const Button = styled.button`
     border-radius: 4px;
     transition: all 0.5s ease;
     &:hover {
-        background: gray;
-        color: #fff;
+        background: lightgray;
         letter-spacing: 1px;
         -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
         -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
