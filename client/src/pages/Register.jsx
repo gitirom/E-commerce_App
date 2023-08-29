@@ -4,10 +4,10 @@ const Container = styled.div`
     width: 100vw;
     height: 100vh;
     background: linear-gradient(
-        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.1),
         rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    url("https://img.freepik.com/free-photo/excited-girl-scream-joy-making-fist-pump-holding-shopping-bag-rejoicing-standing-dress-ove_1258-121722.jpg?w=1380&t=st=1693324572~exp=1693325172~hmac=2ec5d08960288e7f897e219ea06d8f89a62c116d86135ed1ac8eaca384228402")
         center;
     background-size: cover;
     display: flex;
@@ -41,7 +41,8 @@ const Button = styled.button`
     width: 40%;
     border: none;
     padding: 15px 20px;
-    background-color: teal;
+    font-size: 17px;
+    background-color: #fea6b0;
     color: white;
     cursor: pointer;
     transition: all 0.4s ease 0s;
@@ -61,10 +62,10 @@ const Register = () => {
             <Wrapper>
                 <Title>CREATE AN ACCOUNT</Title>
                 <Form>
-                    <Input placeholder="name" />
+                    <Input placeholder=" name" />
                     <Input placeholder="last name" />
-                    <Input placeholder="username" />
                     <Input placeholder="email" />
+                    <Input placeholder="phone Number" />
                     <Input placeholder="password" />
                     <Input placeholder="confirm password" />
                     <Agreement>
