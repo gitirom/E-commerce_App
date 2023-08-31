@@ -8,9 +8,11 @@ import {
     Room,
     Twitter,
 } from "@material-ui/icons";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
     display: flex;
+    ${mobile({ flexDirection: "column" })}
 `;
 const Left = styled.div`
     flex: 1;flex: 1;
@@ -51,11 +53,13 @@ const SocialIcon = styled.div`
         box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
         transition: all 0.4s ease 0s;
     }
+    
 `;
 
 const Center = styled.div`
     flex: 1;
     padding: 20px;
+    ${mobile({ display: "none" })}
 `;
 
 const Title = styled.h3`
@@ -76,6 +80,7 @@ const ListItem = styled.li`
 const Right = styled.div`
     flex: 1;
     padding: 20px;
+    ${mobile({ backgroundColor: "#fff8f8" })}
 `;
 
 const ContactItem = styled.div`
