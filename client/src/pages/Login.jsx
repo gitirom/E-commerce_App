@@ -8,7 +8,7 @@ const Container = styled.div`
         rgba(255, 255, 255, 0.1),
         rgba(255, 255, 255, 0.5)
         ),
-        url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+        url("https://img.freepik.com/free-photo/cyber-monday-retail-sales_23-2148688493.jpg?w=1380&t=st=1693490062~exp=1693490662~hmac=d19905a0b54a946c82e60c90f216b6558fd84ba6c7edc86d9a879e98c27484dc")
         center;
     background-size: cover;
     display: flex;
