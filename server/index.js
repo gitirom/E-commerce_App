@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const userTest = require("./router/user");
 
 dotenv.config();
 
@@ -11,6 +12,8 @@ mongoose
     .catch((err) => {
     console.log(err);
 });
+
+app.use("/api/user", userTest);
 
 app.listen( process.env.PORT || 5000, () => {
     console.log("Backend server is running!");
