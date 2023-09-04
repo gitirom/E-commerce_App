@@ -1,7 +1,12 @@
 const router = require("express").Router();
 
-router.get("/userTest", (req, res) => {
+router.get("/users", (req, res) => {
     res.send("user test is successful");
+});
+
+
+router.post("/user", (req, res) => {
+    
 });
 
 
