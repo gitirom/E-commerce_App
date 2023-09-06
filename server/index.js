@@ -2,9 +2,10 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const userTest = require("./routers/user");
+const userRoute = require("./routers/user");
 const authRoute = require('./routers/auth');
 const productRoute = require('./routers/product');
+const CartRoute = require('./routers/cart');
 
 dotenv.config();
 app.use(express.json());   
@@ -17,9 +18,10 @@ mongoose.connect(process.env.MONGO_URL, {
 .then(() => console.log("DB Connection Successful!"))
 .catch((err) => console.log(err));
 
-app.use("/api/users", userTest);
+app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/products", productRoute);
+app.use("/api/cart", CartRoute);
 
 app.listen( process.env.PORT || 5000, () => {
     console.log("Backend server is running!");
