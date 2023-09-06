@@ -51,4 +51,40 @@ const {
         }
     });
 
+    //GET All USER
+    router.get("/", verifyTokenAndAdmin, async (req, res) => {
+        //return just the last new user
+        const query = req.query.new;
+        try {
+            const users = query ? await User.find().sort({_id: -1}).limit(5) :  await User.find(); //using query to get the new users by limit if not return all users
+            res.status(200).json(users);
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    });
+    //GET USER STATS
+    router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
+        const date = new Date();
+        const lastYear = new Date(date.setFullYear(date.getFullYear() - 1)); //this give me the last year
+        try {
+            const data = await User.aggregate([  //aggregate  is a way of processing a large number of documents in a collection
+                {$match: { createdAt: { $gte: lastYear }}},
+                {
+                    $project: {
+                        month: { $month: "$createdAt" },   //$month take month number
+                    },
+                },
+                {
+                    $group: {
+                        _id: "$month",
+                        total: { $sum: 1 },  //this is the return result sum will be increment auto
+                    },
+                },
+            ]);
+            res.status(200).json(data);
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    });
+
 module.exports = router;
