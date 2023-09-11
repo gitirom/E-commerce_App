@@ -62,29 +62,29 @@ const {
     });
 
     //GET All PRODUCTS
-    router.get("/", verifyTokenAndAdmin, async (req, res) => {
+    router.get("/", async (req, res) => {
         const qNew = req.query.new;
-        const queryCategory = req.query.category;
+        const qCategory = req.query.category;
         try {
-            let products;    //cause categories is an array
-
+            let products;
+        
             if (qNew) {
                 products = await Product.find().sort({ createdAt: -1 }).limit(1);
-            } else if (queryCategory) {
-                products = await Product.find({  //filter par category
-                    categories: {
-                        $in : [queryCategory],
-                    },
+            } else if (qCategory) {
+                products = await Product.find({
+                categories: {
+                    $in: [qCategory],
+                },
                 });
-            }else {
+            } else {
                 products = await Product.find();
             }
-
+        
             res.status(200).json(products);
-        } catch (err) {
+            } catch (err) {
             res.status(500).json(err);
-        }
-    });
+            }
+        });
     
 
 module.exports = router;

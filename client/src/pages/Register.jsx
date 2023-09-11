@@ -8,7 +8,7 @@ const Container = styled.div`
         rgba(255, 255, 255, 0.1),
         rgba(255, 255, 255, 0.5)
     ),
-    url("https://img.freepik.com/free-photo/excited-girl-scream-joy-making-fist-pump-holding-shopping-bag-rejoicing-standing-dress-ove_1258-121722.jpg?w=1380&t=st=1693324572~exp=1693325172~hmac=2ec5d08960288e7f897e219ea06d8f89a62c116d86135ed1ac8eaca384228402")
+    url("https://img.freepik.com/free-photo/excited-girl-scream-joy-making-fist-pump-holding-shopping-bag-rejoicing-standing-dress-ove_1258-120529.jpg?w=1380&t=st=1694437792~exp=1694438392~hmac=9a63502ec6162705722906289a72e8c7c5a382a722a31d693fcd542b83be3304")
         center;
     background-size: cover;
     display: flex;
@@ -19,6 +19,7 @@ const Wrapper = styled.div`
     width: 40%;
     padding: 20px;
     background-color: white;
+    border-radius: 7px;
     ${mobile({ width: "75%" })}
 
 `;

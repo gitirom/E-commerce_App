@@ -7,16 +7,20 @@ import ProductList from './pages/ProductList';
 import Register from './pages/Register';
 import Pay from "./components/Pay";
 import SuccessPay from "./components/Success";
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"
 
 function App() {
+  const user = true;
   return (
     <>
       <Router >
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route  path="/pay" element={<Pay />} />
-          <Route  path="/success" element={<SuccessPay />} />
+          <Route  path="/products/:category" element={<ProductList />} />
+          <Route  path="/product/:id" element={<Product />} />
+          <Route  path="/cart" element={<Cart />} />
+          <Route exact path="/login" element={user ? <Home /> : <Login />} />
+          <Route  path="/register" element={user ? <Home /> : <Register />} />
         </Routes>
       </Router>
     </>

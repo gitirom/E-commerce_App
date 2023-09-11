@@ -8,7 +8,7 @@ const Container = styled.div`
         rgba(255, 255, 255, 0.1),
         rgba(255, 255, 255, 0.5)
         ),
-        url("https://img.freepik.com/free-photo/cyber-monday-retail-sales_23-2148688493.jpg?w=1380&t=st=1693490062~exp=1693490662~hmac=d19905a0b54a946c82e60c90f216b6558fd84ba6c7edc86d9a879e98c27484dc")
+        url("https://img.freepik.com/free-photo/bunch-black-friday-gifts-golden-shopping-cart-with-copy-space_23-2148667040.jpg?w=1380&t=st=1694438000~exp=1694438600~hmac=843ace27b8334cb4af5e87b8ee1cdd851f759380d72ce2576751806d9a23d932")
         center;
     background-size: cover;
     display: flex;
@@ -21,6 +21,7 @@ const Container = styled.div`
     width: 25%;
     padding: 20px;
     background-color: white;
+    border-radius: 7px;
     ${mobile({ width: "75%" })}
     `;
 
@@ -46,7 +47,7 @@ const Container = styled.div`
     border: none;
     padding: 15px 20px;
     font-size: 17px;
-    background-color: #b1b1b1;
+    background-color: #777777;
     color: white;
     cursor: pointer;
     margin-bottom: 10px;
