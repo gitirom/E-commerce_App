@@ -5,6 +5,10 @@ import NewsLetter from "../components/NewsLetter";
 import Footer from "../components/Footer";
 import { Add, Remove } from "@material-ui/icons";
 import { mobile } from "../responsive";
+import { useLocation } from 'react-router-dom';
+import { publicRequest } from "../requestMethod";
+import { useEffect, useState } from "react";
+
 
 const Container = styled.div`
 
@@ -120,49 +124,74 @@ const Button = styled.button`
 
 
 const Product = () => {
+    const location = useLocation();
+    const id = location.pathname.split("/")[2]; //This code essentially extracts an id from the URL's pathname, assuming a specific URL structure where the id is the third segment of the pathname.
+
+    const [product, setProduct] = useState({});
+    const [quantity, setQuantity] = useState(1);
+    const [color, setColor] = useState("");
+    const [size, setSize] = useState("");
+
+
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+                const res = await publicRequest.get("/products/find/" + id); //cause I put the baseurl
+                setProduct(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        getProduct();
+    }, [id]);
+
+    const handleQuantity = (type) => {
+        if (type === "dec") {
+            quantity > 1 && setQuantity(quantity - 1); // this for getting block dec under 0
+        } else {
+            setQuantity(quantity + 1);
+        }
+    }
+
+
+
     return (
         <Container>
             <Navbar />
             <Announcement />
             <Wrapper>
                 <ImgContainer>
-                <Image src="https://images.pexels.com/photos/8063381/pexels-photo-8063381.jpeg" />
+                <Image src={product.img} />
                 </ImgContainer>
                 <InfoContainer>
-                <Title>Denim Jumpsuit</Title>
+                <Title>{ product.title }</Title>
                 <Desc>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                    venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
-                    iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget
-                    tristique tortor pretium ut. Curabitur elit justo, consequat id
-                    condimentum ac, volutpat ornare.
+                { product.desc }
                 </Desc>
-                <Price>$ 20</Price>
+                <Price>$ { product.price }</Price>
                 <FilterContainer>
                     <Filter>
                         <FilterTitle>Color</FilterTitle>
-                        <FilterColor color="black" />
-                        <FilterColor color="darkblue" />
-                        <FilterColor color="gray" />
+                        {product.color?.map((c) => (
+                            <FilterColor color={c} key={c} onClick={() => setColor(c)}  /> //onClick for get able to chose any color onChange to.
+                        ))}
                     </Filter>
                     <Filter>
                     <FilterTitle>Size</FilterTitle>
-                    <FilterSize>
-                        <FilterSizeOption>XS</FilterSizeOption>
-                        <FilterSizeOption>S</FilterSizeOption>
-                        <FilterSizeOption>M</FilterSizeOption>
-                        <FilterSizeOption>L</FilterSizeOption>
-                        <FilterSizeOption>XL</FilterSizeOption>
+                    <FilterSize onChange={(e) => setSize(e.target.value)} > 
+                        {product.size?.map((s) => 
+                            <FilterSizeOption key={s} >{s}</FilterSizeOption>
+                        )}
                     </FilterSize>
                     </Filter>
                 </FilterContainer>
                 <AddContainer>
                     <AmountContainer>
-                        <Remove style={{cursor: "pointer"}} />
-                        <Amount>1</Amount>
-                        <Add style={{cursor: "pointer"}} />
+                        <Remove onClick={() => handleQuantity("dec")} />
+                        <Amount>{quantity}</Amount>
+                        <Add onClick={() => handleQuantity("inc")} />
                     </AmountContainer>
-                    <Button>ADD TO CART</Button>
+                    <Button  >ADD TO CART</Button>
                 </AddContainer>
                 </InfoContainer>
             </Wrapper>
