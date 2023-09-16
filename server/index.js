@@ -9,9 +9,15 @@ const CartRoute = require('./routers/cart');
 const OrderRoute = require('./routers/order');
 const stripeRoute = require('./routers/stripe');
 const cors = require("cors");
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 dotenv.config();
 app.use(express.json());   
+
+
 
 
 
