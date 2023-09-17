@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethod";
 import {useNavigate} from "react-router-dom";
 
-const KEY = process.env.REACT_APP_STRIPE;
+const KEY = "pk_test_51Nnk1aH81bhXcDamzUIHyRPdHPSjyhRdFtZVEG9DeKnHM5KxHokUVsiioP5khbF3Bi688B3019OeW6gM6MxpPPQ600MGTAAp4O";
 
 const Container = styled.div`
 
@@ -179,8 +179,7 @@ const Button = styled.button`
 
 const Cart = () => {
     const cart = useSelector(state => state.cart);
-    const [stripeToken, setStripeToken] = useState(null);
-    const [data, setData] = useState(null);
+    const [stripeToken, setStripeToken] = useState({});
     const navigate = useNavigate();
 
     const onToken = (token) => {

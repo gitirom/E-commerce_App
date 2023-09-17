@@ -9,6 +9,6 @@ export const publicRequest = axios.create({  //this method to avoid create axios
 
 export const userRequest = axios.create({
     baseURL: BASE_URL,
-    header:{token:`Bearer ${TOKEN}`},
+    header: { token: `Bearer ${TOKEN}` },
 });
 
