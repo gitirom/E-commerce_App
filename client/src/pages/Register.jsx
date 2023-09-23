@@ -43,7 +43,8 @@ const Agreement = styled.span`
 `;
 const Button = styled.button`
     width: 40%;
-    border: none;
+    border: 1px solid transparent;
+    border-radius: 5px;
     padding: 15px 20px;
     font-size: 17px;
     background-color: #fea6b0;

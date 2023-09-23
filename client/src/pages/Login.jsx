@@ -1,5 +1,8 @@
 import { styled } from "styled-components";
 import { mobile } from "../responsive";
+import { useState } from "react";
+import { login } from "../Redux/apiCalls";
+import { useDispatch, useSelector } from "react-redux";
 
 const Container = styled.div`
     width: 100vw;
@@ -8,7 +11,7 @@ const Container = styled.div`
         rgba(255, 255, 255, 0.1),
         rgba(255, 255, 255, 0.5)
         ),
-        url("https://img.freepik.com/free-photo/bunch-black-friday-gifts-golden-shopping-cart-with-copy-space_23-2148667040.jpg?w=1380&t=st=1694438000~exp=1694438600~hmac=843ace27b8334cb4af5e87b8ee1cdd851f759380d72ce2576751806d9a23d932")
+        url("https://images.pexels.com/photos/5622874/pexels-photo-5622874.jpeg")
         center;
     background-size: cover;
     display: flex;
@@ -44,7 +47,8 @@ const Container = styled.div`
 
     const Button = styled.button`
     width: 40%;
-    border: none;
+    border: 1px solid transparent;
+    border-radius: 5px;
     padding: 15px 20px;
     font-size: 17px;
     background-color: #777777;
@@ -53,6 +57,10 @@ const Container = styled.div`
     margin-bottom: 10px;
     transition: all 0.4s ease 0s;
     
+    &:disabled {
+        cursor: not-allowed;
+    }
+
     &:hover{
         letter-spacing: 1px;
         -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
@@ -60,24 +68,41 @@ const Container = styled.div`
         box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
         transition: all 0.4s ease 0s;
     }
+    
     `;
 
     const Link = styled.a`
-    margin: 5px 0px;
-    font-size: 12px;
-    text-decoration: underline;
-    cursor: pointer;
+        margin: 5px 0px;
+        font-size: 12px;
+        text-decoration: underline;
+        cursor: pointer;
+    `;
+
+    const Error = styled.div`
+        color: red;
     `;
 
 const Login = () => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+    const { isFetching, error } = useSelector((state) => state.user);
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        login(dispatch, { email, password });
+    };
+
     return (
         <Container>
         <Wrapper>
                 <Title>SIGN IN</Title>
                 <Form>
-                    <Input placeholder="email" />
-                    <Input placeholder="password" />
-                    <Button>LOGIN</Button>
+                    <Input placeholder="email" onChange={(e) => setEmail(e.target.value) } />
+                    <Input placeholder="password" type="password" onChange={(e) => setPassword(e.target.value) } />
+                    <Button onClick={handleClick} disabled={isFetching} >LOGIN</Button>
+                    { error && <Error>Something went wrong... </Error> }
                     <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
                     <Link>CREATE A NEW ACCOUNT</Link>
                 </Form>
