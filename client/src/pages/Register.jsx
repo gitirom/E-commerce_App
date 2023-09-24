@@ -1,5 +1,7 @@
 import { styled } from "styled-components";
 import { mobile } from "../responsive";
+import { Link } from "react-router-dom";
+
 
 const Container = styled.div`
     width: 100vw;
@@ -38,8 +40,9 @@ const Input = styled.input`
     padding: 10px;
 `;
 const Agreement = styled.span`
-    font-size: 12px;
+    font-size: 15px;
     margin: 20px 0px;
+    
 `;
 const Button = styled.button`
     width: 40%;
@@ -61,6 +64,11 @@ const Button = styled.button`
     }
 `;
 
+const Links = styled.b`
+color: black;
+font-size: 1rem;    
+`;
+
 const Register = () => {
     return (
         <Container>
@@ -74,8 +82,7 @@ const Register = () => {
                     <Input placeholder="password" />
                     <Input placeholder="confirm password" />
                     <Agreement>
-                        By creating an account, I consent to the processing of my personal
-                        data in accordance with the <b>PRIVACY POLICY</b>
+                        By creating an account, you can check and find all your best products <Link to="/login" ><Links><b>Have an account!</b></Links></Link> 
                     </Agreement>
                     <Button>CREATE</Button>
                 </Form>

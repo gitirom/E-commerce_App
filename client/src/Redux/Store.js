@@ -19,7 +19,7 @@ const persistConfig = {
     storage,
 };
 
-//Redux Persist is a tool used to seamlessly save the application's Redux state object to AsyncStorage, when i login and refresh i cant go to login page. 
+//Redux Persist is a tool used to seamlessly save the application's Redux state object to AsyncStorage, when i login and refresh i cant go to login page. save in storage
 
 const rootReducer = combineReducers({ user: userReducer, cart: cartReducer });
 
@@ -37,3 +37,8 @@ export const store = configureStore({
 });
 
 export let persistor = persistStore(store);
+
+// Call this function to clear the persisted state
+export const clearPersistedState = () => {
+    persistor.purge();
+};

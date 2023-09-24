@@ -3,6 +3,7 @@ import { mobile } from "../responsive";
 import { useState } from "react";
 import { login } from "../Redux/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
     width: 100vw;
@@ -42,7 +43,8 @@ const Container = styled.div`
     flex: 1;
     min-width: 40%;
     margin: 10px 0;
-    padding: 10px;
+    padding: 18px;
+    font-size: initial;
     `;
 
     const Button = styled.button`
@@ -71,11 +73,13 @@ const Container = styled.div`
     
     `;
 
-    const Link = styled.a`
+    const Links = styled.a`
         margin: 5px 0px;
         font-size: 12px;
         text-decoration: underline;
         cursor: pointer;
+        color: black;
+        font-size: 0.95rem;
     `;
 
     const Error = styled.div`
@@ -94,6 +98,8 @@ const Login = () => {
         login(dispatch, { email, password });
     };
 
+    
+
     return (
         <Container>
         <Wrapper>
@@ -103,8 +109,10 @@ const Login = () => {
                     <Input placeholder="password" type="password" onChange={(e) => setPassword(e.target.value) } />
                     <Button onClick={handleClick} disabled={isFetching} >LOGIN</Button>
                     { error && <Error>Something went wrong... </Error> }
-                    <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-                    <Link>CREATE A NEW ACCOUNT</Link>
+                    <Links>DO NOT YOU REMEMBER THE PASSWORD?</Links>
+                    <Link to="/register" >
+                        <Links>CREATE A NEW ACCOUNT</Links>
+                    </Link>
                 </Form>
             </Wrapper>
         </Container>
