@@ -13,6 +13,8 @@ import Menu from '@mui/material/Menu';
 import Box from '@mui/material/Box';
 import { clearPersistedState } from '../Redux/Store';
 import { logout } from '../Redux/userRedux';
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Container = styled.div`
@@ -103,9 +105,9 @@ const Navbar = () => {
     const handleLogout = () => {  
         dispatch(logout());
         clearPersistedState();
-        if(logout) {
+        
             window.location.replace('http://localhost:3000/login');
-        }
+            toast.success("Logout Successful 👌");
     }
 
     return (

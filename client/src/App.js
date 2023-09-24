@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import Success from './pages/Success';
 import { useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
@@ -24,6 +25,18 @@ function App() {
           <Route  path="/success" element={<Success />} />
         </Routes>
       </Router>
+      <ToastContainer                                                              //React-Toastify allows you to add notifications to your app with ease. No more nonsense!
+      position="bottom-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+      />
     </>
   );
 }

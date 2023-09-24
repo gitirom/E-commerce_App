@@ -4,6 +4,8 @@ import { useState } from "react";
 import { login } from "../Redux/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Container = styled.div`
     width: 100vw;
@@ -96,6 +98,11 @@ const Login = () => {
     const handleClick = (e) => {
         e.preventDefault();
         login(dispatch, { email, password });
+        
+        if (login) {
+            toast.success("Login Successful 👌");
+        }
+        
     };
 
     
@@ -108,7 +115,7 @@ const Login = () => {
                     <Input placeholder="email" onChange={(e) => setEmail(e.target.value) } />
                     <Input placeholder="password" type="password" onChange={(e) => setPassword(e.target.value) } />
                     <Button onClick={handleClick} disabled={isFetching} >LOGIN</Button>
-                    { error && <Error>Something went wrong... </Error> }
+                    {error && <Error>Something went wrong...</Error>}
                     <Links>DO NOT YOU REMEMBER THE PASSWORD?</Links>
                     <Link to="/register" >
                         <Links>CREATE A NEW ACCOUNT</Links>
